@@ -1,4 +1,3 @@
-# Ignore all files and directories
 */db
 */incremental_db
 */output_files
@@ -15,8 +14,3 @@
 *.bak
 .directory
 transcript
-
-
-# Except for .vhd files
-#!lab1_1_efes
-
