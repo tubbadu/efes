@@ -1,0 +1,22 @@
+# Ignore all files and directories
+*/db
+*/incremental_db
+*/output_files
+*/simulation
+*/work
+*.txt
+*.mti
+*.mpf
+*.qpf
+*.qsf
+*.sdc
+*.qws
+*.wlf
+*.bak
+.directory
+transcript
+
+
+# Except for .vhd files
+#!lab1_1_efes
+
