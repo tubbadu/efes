@@ -1,9 +1,9 @@
 # Electronics for embedded systems - Group 02
 
-> Gabriele Sanna XXXXXX
-> Giulia Solito XXXXXX
-> Ribaudo Alessandro 283309
-> Rong Zhu XXXXXX
+> Gabriele Sanna XXXXXX  
+> Giulia Solito XXXXXX  
+> Ribaudo Alessandro 283309  
+> Rong Zhu XXXXXX  
 
 ## Laboratory #1
 
