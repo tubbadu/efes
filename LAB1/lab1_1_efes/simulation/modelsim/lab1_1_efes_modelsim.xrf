@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_1_efes/lab1_1_efes.vhd
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_1_efes/SDC1.sdc
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_1_efes/db/lab1_1_efes.cbx.xml
+design_name = lab1_1_efes
+instance = comp, \LEDR[0]~output\, LEDR[0]~output, lab1_1_efes, 1
+instance = comp, \SW[0]~input\, SW[0]~input, lab1_1_efes, 1
+instance = comp, \SW[1]~input\, SW[1]~input, lab1_1_efes, 1
+instance = comp, \LEDR~0\, LEDR~0, lab1_1_efes, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, lab1_1_efes, 1

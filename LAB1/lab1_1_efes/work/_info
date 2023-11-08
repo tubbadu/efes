@@ -1,0 +1,93 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/opt/intelFPGA_lite/20.1
+Elab1_1_efes
+Z0 w1699020759
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+Z3 d/home/tubbadu/Documents/quartus
+Z4 8/home/tubbadu/Documents/quartus/lab1_1_efes.vhd
+Z5 F/home/tubbadu/Documents/quartus/lab1_1_efes.vhd
+l0
+L4 1
+V7OPYJcj9nfzmcVY?`Col^3
+!s100 R9m2aT6Ulbk23[G`2Fh;Y0
+Z6 OV;C;2020.1;71
+32
+Z7 !s110 1699022910
+!i10b 1
+Z8 !s108 1699022910.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/lab1_1_efes.vhd|
+!s107 /home/tubbadu/Documents/quartus/lab1_1_efes.vhd|
+!i113 1
+Z10 o-work work -2002 -explicit
+Z11 tExplicit 1 CvgOpt 0
+Abehavior
+R1
+R2
+DEx4 work 11 lab1_1_efes 0 22 7OPYJcj9nfzmcVY?`Col^3
+!i122 4
+l12
+L11 4
+V:5RNTffm`<@5GA8^GbZ1j0
+!s100 @7RM5j4Id`2]Co48V3ESm1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+Z12 !s107 /home/tubbadu/Documents/quartus/lab1_1_efes.vhd|
+!i113 1
+R10
+R11
+Etb
+Z13 w1699022845
+R1
+R2
+!i122 3
+R3
+Z14 8/home/tubbadu/Documents/quartus/tb.vhd
+Z15 F/home/tubbadu/Documents/quartus/tb.vhd
+l0
+L4 1
+V8nZ;P;6na5FE@b8@XgM@d3
+!s100 O:E843h]l]mNRE<`o0lY21
+R6
+32
+Z16 !s110 1699022847
+!i10b 1
+Z17 !s108 1699022847.000000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/tb.vhd|
+Z19 !s107 /home/tubbadu/Documents/quartus/tb.vhd|
+!i113 1
+R10
+R11
+Abehavior
+R1
+R2
+DEx4 work 2 tb 0 22 8nZ;P;6na5FE@b8@XgM@d3
+!i122 3
+l16
+L7 35
+VcgHYj]iNzBzIR>RhNNig`1
+!s100 ;DYmL?SfQ4jhlcn34:nV83
+R6
+32
+R16
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R10
+R11

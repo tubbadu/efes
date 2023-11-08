@@ -1,0 +1,12 @@
+vendor_name = ModelSim
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_2_efes/counter_2bits.vhd
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_2_efes/lab1_2_efes.vhd
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_2_efes/and_gate.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, /opt/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, /home/tubbadu/Documents/quartus/lab1_2_efes/db/lab1_2_efes.cbx.xml
+design_name = lab1_2_efes
+instance = comp, \clk~input\, clk~input, lab1_2_efes, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, lab1_2_efes, 1
