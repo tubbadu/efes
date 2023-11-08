@@ -1,3 +1,4 @@
+# exclude
 */db
 */incremental_db
 */output_files
@@ -14,3 +15,8 @@
 *.bak
 .directory
 transcript
+.hidden
+
+
+# include
+!DE1_SoC_pin_assignments.qsf
