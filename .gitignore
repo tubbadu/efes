@@ -7,7 +7,7 @@
 *.txt
 *.mti
 *.mpf
-*.qpf
+# *.qpf # this is used to open  the project from quartus
 *.qsf
 *.sdc
 *.qws
