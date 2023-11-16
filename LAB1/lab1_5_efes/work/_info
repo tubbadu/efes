@@ -1,0 +1,181 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/tubbadu/Documents/quartus
+Ecounter16
+Z0 w1700134072
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 1
+Z4 d/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes
+Z5 8/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/counter16.vhd
+Z6 F/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/counter16.vhd
+l0
+L5 1
+ViMmI`FgCQXSgVmlJdcANm2
+!s100 ]P0PFE[BalfNdAeMb1OgC0
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1700135131
+!i10b 1
+Z9 !s108 1700135131.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/counter16.vhd|
+Z11 !s107 /home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/counter16.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Abehavior
+R1
+R2
+R3
+DEx4 work 9 counter16 0 22 iMmI`FgCQXSgVmlJdcANm2
+!i122 1
+l17
+L13 20
+V4_alHme3=@NkN?FN:APR13
+!s100 DEP?NJ>D<>0G3RW=z@[_20
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Edisp
+Z14 w1699434691
+R2
+R3
+!i122 2
+R4
+Z15 8/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/disp.vhd
+Z16 F/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/disp.vhd
+l0
+L4 1
+Vm:izS^JTD9EOG>:@dc@2R3
+!s100 YfB1Q;[Q6RZ9SYMUFK=z:0
+R7
+32
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/disp.vhd|
+Z18 !s107 /home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/disp.vhd|
+!i113 1
+R12
+R13
+Abehaviour
+R2
+R3
+DEx4 work 4 disp 0 22 m:izS^JTD9EOG>:@dc@2R3
+!i122 2
+l10
+L9 16
+Vk>2k1oVUgPkXP@Nh6hilG2
+!s100 Sd<cEU_@S8>VD3[1`a_S;2
+R7
+32
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13
+Elab1_5_efes
+Z19 w1700134250
+R1
+R2
+R3
+!i122 3
+R4
+Z20 8/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/lab1_5_efes.vhd
+Z21 F/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/lab1_5_efes.vhd
+l0
+L5 1
+VN`IT5U;Zoce>jPco9FMcc2
+!s100 >=ZPhd5;ZCgVJ>BbMYHTI0
+R7
+32
+R8
+!i10b 1
+R9
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/lab1_5_efes.vhd|
+Z23 !s107 /home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/lab1_5_efes.vhd|
+!i113 1
+R12
+R13
+Abehavior
+R1
+R2
+R3
+DEx4 work 11 lab1_5_efes 0 22 N`IT5U;Zoce>jPco9FMcc2
+!i122 3
+l33
+L15 48
+V_<?P3mLol[DN=_8Bl5HXm1
+!s100 eGg]5c3T3k=ZIPibBR@D30
+R7
+32
+R8
+!i10b 1
+R9
+R22
+R23
+!i113 1
+R12
+R13
+Etb
+Z24 w1700135080
+R1
+R2
+R3
+!i122 4
+R4
+Z25 8/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/tb.vhd
+Z26 F/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/tb.vhd
+l0
+L5 1
+VDh9a4B0V]Nl5OBn^0VU[U1
+!s100 CeW6GPAgSSSJfWiE4?khm1
+R7
+32
+R8
+!i10b 1
+R9
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/tb.vhd|
+!s107 /home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/tb.vhd|
+!i113 1
+R12
+R13
+Abehavior
+R1
+R2
+R3
+DEx4 work 2 tb 0 22 Dh9a4B0V]Nl5OBn^0VU[U1
+!i122 4
+l27
+L8 52
+VfIAHZ8P[`50H2AS[LT7VN1
+!s100 <5:HXhU[UHDHB1VnUdz@A3
+R7
+32
+R8
+!i10b 1
+R9
+R27
+Z28 !s107 /home/tubbadu/Documents/quartus/LAB1/lab1_5_efes/tb.vhd|
+!i113 1
+R12
+R13
