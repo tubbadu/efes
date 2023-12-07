@@ -9,6 +9,8 @@
 
 ### Project 1: AND gate
 
+In this project we designed an AND gate. The input signals are the first two switches of the board, and the output signal is displayed on the first LED. 
+
 #### file `lab1_1_efes.vhd`:
 ```vhdl
 library ieee;
@@ -73,18 +75,166 @@ begin
 end architecture;
 ```
 
-#### Code explanation:
-In this project we designed an AND gate. The input signals are the first two switches of the board, and the output signal is displayed on the first LED. 
 
 #### Timing analisys:
 
-| Input 1 pin | Input 2 pin | Output pin | Constraint $t_{pd}$ | Worst case $t_{pd}$ |
-| ----------- | ----------- | ---------- | ------------------- | ------------------- |
-| 1           | 2           | 3          | 4                   | 5                   |
-| 1           | 2           | 3          | 4                   | 5                   |
-| 1           | 2           | 3          | 4                   | 5                   |
+At the beginning, we didn't assign any pins or timing constraints to the project in order to let the tool make the decision itself. 
 
-blablabla
+The tool set the following pins:
+
+- PIN_AH28 for signal A
+
+- PIN_AC25 for signal B
+
+- PIN_AD25 for signal C
+
+It made a very smart choice since these pins are pretty close to each other; in this way, signals propagation delays through the AND gate should have been relatively small. 
+
+In fact, the resulting propagation delays were:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 5.737 ns
+  
+  2. from falling edge to falling edge, FF: 5.835 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 5.965 ns
+  
+  2. from falling edge to falling edge, FF: 6.162 ns
+
+Then we tried assigning timing constraints to check whether the tool would have assigned the same pins as before or if it would have changed something in order to be sure that the timing constraint would have been respected.
+
+We assigned 10 ns as timing constraint (a pretty large one), and, as predicted,  the pins assigned by the tool were closer than before:
+
+- PIN_AB26 for signal A
+
+- PIN_AB22 for signal B
+
+- PIN_AB23 for signal C
+
+As a result, signals propagation delays through the AND gate were smaller:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 5.660 ns
+  
+  2. from falling edge to falling edge, FF: 5.751 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 5.644 ns
+  
+  2. from falling edge to falling edge, FF: 5.754 ns
+
+![Figure 1](C:\Users\giuli\Dropbox%20(Politecnico%20Di%20Torino%20Studenti)\Magistrale%20elettronica\Electronics%20for%20embedded%20systems\lab\pin_planner.png)
+
+{Figure 1} In orange is shown the first set of pins assigned by the tool, in blue is shown the second one.
+
+After assigning the timing constraint and letting the tool figure by itself the pin assignment, we tried doing the opposite: we assigned different sets of pins for our signals and we checked the resulting propagation delays.
+
+| A pin | B pin | C pin | Constraint $t_{{pd}_{MAX}}$ [ns] | Worst case $t_{pd}$ [ns] |
+| ----- | ----- | ----- | -------------------------------- | ------------------------ |
+| AD27  | AD26  | AD25  | None                             | 7.739                    |
+| AE26  | AD26  | AD25  | None                             | 7.739                    |
+| AE26  | AC27  | AH30  | None                             | 6.807                    |
+| AK3   | A3    | AH30  | None                             | 9.951                    |
+
+![Figure 2](C:\Users\giuli\Dropbox%20(Politecnico%20Di%20Torino%20Studenti)\Magistrale%20elettronica\Electronics%20for%20embedded%20systems\lab\pin_plan.png)
+
+{Figure 2} In green is shown the first set of pins, in purple is shown the last one.
+
+We first assigned pins really close  to each other (first row of the table) expecting to have similar values of propagation delays as the ones obtained when the tool assigned both pins and timing constraints by itself. 
+
+What we got instead were values of propagation delays higher than those:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 6.154 ns
+  
+  2. from falling edge to falling edge, FF: 6.385 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 6.845 ns
+  
+  2. from falling edge to falling edge, FF: 7.739 ns
+
+We think that the reason why this happened may be the fact that:
+
+- when the tool had to make all the decisions, it chose pins that not only are close to each other on the pin planner but whose routes are also shorter inside the FPGA
+
+- when we chose the pins, even if they were approximately as close to each other as the ones chosen by the tool previously, their routes are longer inside the FPGA
+
+During our second attempt, we changed only one pin, the A signals' one, and we chose a pin which was a little farther away. 
+
+As expected, the propagation delays of the A signal were a little bit higher this time:
+
+- from rising edge to rising edge, RR: 6.319 ns
+
+- from falling edge to falling edge, FF: 6.545 ns
+
+In our third attempt, we changed also signals B and C pins in order to have more distance between the three of them, but still not too much (third row of the table).
+
+While signal A propagation delays increased, according to our prediction, the ones of signal B decreased:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 6.571 ns
+  
+  2. from falling edge to falling edge, FF: 6.807 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 6.116 ns
+  
+  2. from falling edge to falling edge, FF: 6.173 ns
+
+We think that the reason why this happened is probably the same we said before, regarding the routes between the pins inside the FPGA.
+
+During our last attempt, we assigned pins really far from each other (fourth row of the table).
+
+What we expected were propagation delays much higher than the previous ones and, in fact, we got:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 8.103 ns
+  
+  2. from falling edge to falling edge, FF: 8.495 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 9.350 ns
+  
+  2. from falling edge to falling edge, FF: 9.951 ns
+
+At the end, we assigned both pins and timing constraints to our project:
+
+| A pin | B pin | C pin | Constraint $t_{{pd}_{MAX}}$ [ns] | Worst case $t_{pd}$ [ns] |
+| ----- | ----- | ----- | -------------------------------- | ------------------------ |
+| AK3   | A3    | AH30  | 15                               | 10.708                   |
+| AK3   | A3    | AH30  | 9                                | 10.708                   |
+
+We kept the same pin assignment of the last attempt and we assigned different timing constraints, starting from a higher one and decreasing it along the way. 
+
+Since during the last attempt we didn't assign any timing constraint and the tool figured out a way to have a maximum propagation delay of 9.951 ns, we thought that with a timing constraint of 15 ns we would have had pretty much the same results, probably a little higher.
+
+Our reasoning was proved to be true by the results:
+
+- signal A
+  
+  1. from rising edge to rising edge, RR: 8.694 ns
+  
+  2. from falling edge to falling edge, FF: 9.185 ns
+
+- signal B
+  
+  1. from rising edge to rising edge, RR: 9.989 ns
+  
+  2. from falling edge to falling edge, FF: 10.708 ns
+
+At that point, we tried assigning a smaller timing constraint (9 ns) in order to see if the tool would have found a way to respect it, but we discovered that the tool couldn't do it and that probably the propagation delays that it found by itself were the best he could do. In fact, it didn't even try to get those values again, it just gave up and reported the same result we obtained for 15 ns as timing constraint.
 
 ### Project 2: 10 bit counter
 
@@ -254,11 +404,11 @@ end architecture;
 we added a 10 bit counter clocked at 50 MHz, and connected the bits 8 and 9 (the slowest changing ones) to the input of the AND gate. Then we connected the inputs and the output of the gate to the GPIO pins, in order to observe the waveforms on the oscilloscope.  
 As we can see in the image below, the output of the AND gate (the purple one) correctly represents the logical AND of the two inputs: it is LOW always except when both inputs are HIGH. 
 
-![Figure_1](report/andgate_waveform.jpg)
+![Figure 3](report/andgate_waveform.jpg)
 
 Note: the waveforms are vertically shifted in order to better distinguish them.
 
-#### Timing analisys:
+<!-- #### Timing analisys: TODO???? -->
 
 ### Project 3: Ripple Carry Adder
 
@@ -412,16 +562,16 @@ We wrote the VHDL code for a full adder, taking two bits (`a_full` and `b_full`)
 In order to obtain a 4 bits ripple carry adder, we connected 4 different full adders together, routing the carry out of each one to the carry in of the following. To make the ripple carry adder synchronous, we added filp flops at the inputs and the output, using a process sensible to the clock. Finally, we displayed on a 7 segment display the result, using a decoder whose logic function has been calculated with a Karnaugh map, and also displayed it in binary format using the LEDs.  
 If there an overflow occurs, an LED turns on, like shown in the following pictures:
 
-![](report/0010+0011.jpeg)
+![Figure 4](report/0010+0011.jpeg)
 $0010_2 + 0011_2 = 0101_2 = 5_{16}$
-![](report/0010+0011+1.jpeg)
+![Figure 5](report/0010+0011+1.jpeg)
 Here the KEY0 button is pressed, meaning that the carry in is equal to 1.  
 $0010_2 + 0011_2 + 1 = 0110_2 = 6_{16}$
-![](report/1000+0010.jpeg)
+![Figure 6](report/1000+0010.jpeg)
 $1000_2 + 0010_2 = 1010_2 = A_{16}$
-![](report/1000+0010+1.jpeg)
+![Figure 7](report/1000+0010+1.jpeg)
 $1000_2 + 0010_2 + 1 = 1011_2 = B_{16}$
-![](report/1111+0001.jpeg)
+![Figure 8](report/1111+0001.jpeg)
 In this example the result cannot be represented on 4 bits, so the value displayed is wrong and the overflow LED turns on  
 $1111_2 + 0001_2 = 10000_2 = 10_{16}$
 
