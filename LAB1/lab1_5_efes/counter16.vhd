@@ -12,8 +12,6 @@ end entity;
 
 architecture behavior of counter16 is
 
---signal int_value: std_logic_vector(15 downto 0);
-
 begin
 
 	cntpr: process(clk, rstn)
@@ -27,6 +25,6 @@ begin
 		end if;
 	end process;
 	
-	tc <= '1' when (cnt = "1111111111111111")  else '0';
+	tc <= '1' when (cnt = "1111111111111111") else '0';
 
 end architecture;

@@ -1,0 +1,418 @@
+/*
+ * "Hello World" example.
+ *
+ * This example prints 'Hello from Nios II' to the STDOUT stream. It runs on
+ * the Nios II 'standard', 'full_featured', 'fast', and 'low_cost' example
+ * designs. It runs with or without the MicroC/OS-II RTOS and requires a STDOUT
+ * device in your system's hardware.
+ * The memory footprint of this hosted application is ~69 kbytes by default
+ * using the standard reference design.
+ *
+ * For a reduced footprint version of this template, and an explanation of how
+ * to reduce the memory footprint for a given application, see the
+ * "small_hello_world" template.
+ *
+ */
+
+
+#define EXERCISE_5_3
+
+
+#ifdef EXERCISE_1
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+
+  printf("RXDATA = 0x%08x\n", *RXDATA);
+  printf("TXDATA = 0x%08x\n", *TXDATA);
+  printf("STATUS = 0x%08x\n", *STATUS);
+  printf("CONTROL = 0x%08x\n", *CONTROL);
+  printf("DIVISOR = 0x%08x\n", *DIVISOR);
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_2
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE_1 115200
+#define BAUDRATE_2 2400
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+
+  int clock_frequency = alt_timestamp_freq();
+
+  int divisor_value = (clock_frequency / BAUDRATE_1) - 1;
+
+  printf("DIVISOR = %d\n", *DIVISOR);
+  printf("DIVISOR_computed = %d\n\n\n\n\n", divisor_value);
+
+  divisor_value = (clock_frequency / BAUDRATE_2) - 1;
+  *DIVISOR = divisor_value;
+
+  printf("DIVISOR = %d must be equal to %d \n", *DIVISOR, divisor_value);
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_3_1
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+
+  int clock_frequency = alt_timestamp_freq();
+
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1;
+  printf("STATUS = 0x%08x\n", *STATUS);
+  // write something on TX
+  *TXDATA = (int) 'a'; // will this work?
+  // *TXDATA = 97; if we want to use the raw ASCII value
+  printf("STATUS = 0x%08x\n", *STATUS);
+
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_3_2
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+
+  int clock_frequency = alt_timestamp_freq();
+
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1;
+  printf("STATUS = 0x%08x\n", *STATUS);
+  // write something on TX
+  *TXDATA = (int) 'a'; // will this work?
+    // *TXDATA = 97; if we want to use the raw ASCII value
+  *TXDATA = (int) 'b'; // will this work?
+  // *TXDATA = 98; if we want to use the raw ASCII value
+  printf("STATUS = 0x%08x\n", *STATUS);
+
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_3_3
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+
+  int clock_frequency = alt_timestamp_freq();
+
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1;
+  printf("STATUS = 0x%08x\n", *STATUS);
+  // write something on TX
+  *TXDATA = (int) 'a'; // will this work?
+   // *TXDATA = 97; if we want to use the raw ASCII value
+  *TXDATA = (int) 'b'; // will this work?
+   // *TXDATA = 98; if we want to use the raw ASCII value
+  *TXDATA = (int) 'c'; // will this work?
+   // *TXDATA = 99; if we want to use the raw ASCII value
+    printf("STATUS = 0x%08x\n", *STATUS);
+    // if our prediction is correct, on putty will be printed "ac"
+
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_5_1
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+  for(ever){
+  	  while(!(*STATUS & (1<<7))){}; // while it's 0, wait
+  	  // now it is 1
+  	  printf("STATUS = 0x%08x\n", *STATUS);
+  	  char ch = *RXDATA; // STATUS bit is automatically cleared
+  	  printf("STATUS = 0x%08x\n", *STATUS);
+  	  printf("RXDATA = 0x%08x (%c)\n", ch, ch);
+   }
+
+  return 0;
+}
+
+#endif
+
+#ifdef EXERCISE_5_2
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+#define ever ;;
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+
+  for(ever){
+	  printf("STATUS = 0x%08x\n", *STATUS);
+	  char ch = *RXDATA; // STATUS bit is automatically cleared
+	  printf("STATUS = 0x%08x\n", *STATUS);
+	  printf("RXDATA = 0x%08x (%c)\n", ch, ch);
+  }
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_4_1
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+#define ever ;;
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+  char str[] = "My name is pippo\0";
+  uint i=0;
+  char ch = str[i];
+  while(ch != '\0') {
+	  while(!(*STATUS & (1<<6))){}; // transmit ready
+	  *TXDATA = ch;
+
+	  i++;
+	  ch = str[i];
+  }
+  //  while(!(*STATUS & (1<<6))){}; // if the last char is not transmitted, uncomment this
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_4_2
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE 2400
+#define ever ;;
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+  char str[] = "For centuries, coffee has been a beloved beverage that transcends geographical boundaries, weaving its way into the fabric of diverse cultures worldwide. This aromatic elixir, derived from the roasted seedsof the Coffea plant, has a rich history, a complex journey from bean to cup, and a myriad of flavors that captivate the senses.\n\nThe tale of coffee's discovery is steeped in legend and lore. One popular narrative attributes its origin to an Ethiopian goat herder named Kaldi, who observed his goats becoming unusually energetic after consuming berries from a certain shrub. Intrigued, Kaldi sampled the berries himself, experiencing a newfound vitality. Word of this discovery spread, reaching monks who began using the berries to create a stimulating drink to help them stay awake during long hours of prayer and meditation.\n\nFrom its humble beginnings in the highlands of Ethiopia, coffee cultivation spread to the Arabian Peninsula, where Yemen became an early hub for coffee trade. By the 15th century, coffeehouses, known as qahveh khaneh, emerged in Persia, becoming vibrant centers for socializing, intellectual discourse, and entertainment. The popularity of coffee continued to grow, reaching Europe in the 17th century and sparking the establishment of the first coffeehouses in cities like Venice, Paris, and London.\n\nThe journey of coffee from bean to cup is a meticulous process, involving cultivation, harvesting, processing, roasting, grinding, and brewing. Each step contributes to the final product's unique characteristics. Arabica and Robusta are the two main species of coffee beans, each imparting distinct flavors and aromas. The altitude at which the coffee is grown, the soil composition, and the climate further influence its profile, creating a vast spectrum of coffee varieties.\n\nRoasting, a critical phase in the coffee-making process, transforms green coffee beans into the aromatic, flavorful brown beans we recognize. The degree of roasting affects the coffee's are over 2000 characters long.\0";
+
+  int nchars = 0;
+  // Iterate until the null terminator is encountered
+  while (str[nchars] != '\0') {
+	  nchars++;
+  }
+
+  int ntotalbits = nchars * (1 + 8 + 1 + 1); // start bit + 8 bit + parity bit + stop bit
+  int estimatetime = ntotalbits / BAUDRATE; // in seconds
+  printf("Estimated time: %d sec\n", estimatetime);
+
+  // now transmit everything
+
+  uint i=0;
+  char ch = str[i];
+  while(ch != '\0') {
+	  while(!(*STATUS & (1<<6))){}; // transmit ready
+	  *TXDATA = ch;
+
+	  i++;
+	  ch = str[i];
+  }
+  //  while(!(*STATUS & (1<<6))){}; // if the last char is not transmitted, uncomment this
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_4_3
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+
+#define BAUDRATE_1 9600
+#define BAUDRATE_2 115200
+#define BAUDRATE BAUDRATE_1 // change this to BAUDRATE_2
+#define ever ;;
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+  char str[] = "For centuries, coffee has been a beloved beverage that transcends geographical boundaries, weaving its way into the fabric of diverse cultures worldwide. This aromatic elixir, derived from the roasted seedsof the Coffea plant, has a rich history, a complex journey from bean to cup, and a myriad of flavors that captivate the senses.\n\nThe tale of coffee's discovery is steeped in legend and lore. One popular narrative attributes its origin to an Ethiopian goat herder named Kaldi, who observed his goats becoming unusually energetic after consuming berries from a certain shrub. Intrigued, Kaldi sampled the berries himself, experiencing a newfound vitality. Word of this discovery spread, reaching monks who began using the berries to create a stimulating drink to help them stay awake during long hours of prayer and meditation.\n\nFrom its humble beginnings in the highlands of Ethiopia, coffee cultivation spread to the Arabian Peninsula, where Yemen became an early hub for coffee trade. By the 15th century, coffeehouses, known as qahveh khaneh, emerged in Persia, becoming vibrant centers for socializing, intellectual discourse, and entertainment. The popularity of coffee continued to grow, reaching Europe in the 17th century and sparking the establishment of the first coffeehouses in cities like Venice, Paris, and London.\n\nThe journey of coffee from bean to cup is a meticulous process, involving cultivation, harvesting, processing, roasting, grinding, and brewing. Each step contributes to the final product's unique characteristics. Arabica and Robusta are the two main species of coffee beans, each imparting distinct flavors and aromas. The altitude at which the coffee is grown, the soil composition, and the climate further influence its profile, creating a vast spectrum of coffee varieties.\n\nRoasting, a critical phase in the coffee-making process, transforms green coffee beans into the aromatic, flavorful brown beans we recognize. The degree of roasting affects the coffee's are over 2000 characters long.\0";
+
+  int nchars = 0;
+  // Iterate until the null terminator is encountered
+  while (str[nchars] != '\0') {
+	  nchars++;
+  }
+
+  int ntotalbits = nchars * (1 + 8 + 1 + 1); // start bit + 8 bit + parity bit + stop bit
+  int estimatetime = ntotalbits / BAUDRATE; // in seconds
+  printf("Estimated time: %d sec\n", estimatetime);
+
+  // now transmit everything
+
+  uint i=0;
+  char ch = str[i];
+  while(ch != '\0') {
+	  while(!(*STATUS & (1<<6))){}; // transmit ready
+	  *TXDATA = ch;
+
+	  i++;
+	  ch = str[i];
+  }
+  //  while(!(*STATUS & (1<<6))){}; // if the last char is not transmitted, uncomment this
+  return 0;
+}
+
+#endif
+
+
+#ifdef EXERCISE_5_3
+
+#include <stdio.h>
+#include "system.h"
+#include "sys/alt_timestamp.h"
+#include "altera_avalon_pio_regs.h"
+#define WAITSOMETIME() t = alt_timestamp(); while(alt_timestamp()-t < nticks) { /* Do nothing */ }
+
+#define BAUDRATE 2400
+#define ever ;;
+
+int main()
+{
+  printf("Hello from Nios II!\n");
+  int *baseaddress = (int *) 0x08001060;
+  int *RXDATA = baseaddress+0, *TXDATA = baseaddress+1, *STATUS = baseaddress+2, *CONTROL = baseaddress+3, *DIVISOR = baseaddress+4;
+  int clock_frequency = alt_timestamp_freq();
+  uint t;
+  uint nticks = clock_frequency * 1.5; // 1.5 sec
+  alt_timestamp_start();
+  *DIVISOR = (clock_frequency / BAUDRATE) - 1; // set baudrate
+
+  // disable all interrupts
+  *CONTROL = 0x0;
+
+  for(ever){
+	  while(!(*STATUS & (1<<7))){}; // while it's 0, wait
+	  // now it is 1
+	  printf("STATUS = 0x%08x\n", *STATUS);
+	  char ch = *RXDATA; // STATUS bit is automatically cleared
+	  printf("STATUS = 0x%08x\n", *STATUS);
+	  printf("RXDATA = 0x%08x (%c)\n", ch, ch);
+
+	  WAITSOMETIME();
+  }
+  return 0;
+}
+
+#endif

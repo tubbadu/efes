@@ -1,0 +1,9 @@
+13:39:16 **** Incremental Build of configuration Nios II for project uart_lab2 ****
+make all 
+Info: Building ../uart_lab2_bsp/
+make --no-print-directory -C ../uart_lab2_bsp/
+[BSP build complete]
+[uart_lab2 build complete]
+
+13:39:16 Build Finished (took 114ms)
+
