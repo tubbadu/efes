@@ -23,7 +23,6 @@ int main()
 {
 	int gpio,nticks=10000;
 	alt_timestamp_start();
-	printf("hello");
 	for( ; ; ){
 
 		gpio=IORD_ALTERA_AVALON_PIO_DATA(NIOS_HEADER_CONN_BASE);
@@ -51,12 +50,13 @@ Alternatively, we could also achieve the same result by reading the LSB and eval
 
 In order to obtain a time delay, we counted a fixed number of clock cycles inside a while loop.
 
+The resulting waveform is a clean square wave, as shown in [Figure 1](#figure-1)
+
 
 ### Project #3: UART signal on the oscilloscope
 
-We sent an `a` character through PuTTY: its ASCII code is 97, that in binary is `01100001`. As we can observe from the picture below, the data is correctly transmitted. On the oscilloscope they appear to be in reverse order because the oscilloscope time axis is pointed to the right, while the data are transmitted from the LSB to the MSB
+We sent an `a` character through PuTTY: its ASCII code is 97, that in binary is `01100001`. As we can observe from the picture [Figure 2](#figure-2), the data is correctly transmitted. On the oscilloscope they appear to be in reverse order because the oscilloscope time axis is oriented to the right, while the data are transmitted from the LSB to the MSB
 
-![](report/Lab2_project3.png)
 
 ### Project  #4: Software UART receiver
 
@@ -223,7 +223,53 @@ We read the stop bits in a similar way, but instead of saving them to an array w
 At the transmission end, we checked for errors and, if none, printed the received value.
 
 ### Project 5: Increasing Baud Rate
-We set the baud rate to some common values berween 110 and 2400, and found that the data was received correctly for all these baud rates. In the image below the blue pulse shows the sampling instant.
+We set the baud rate to some common values berween 110 and 2400, and found that the data was received correctly for all these baud rates. In the image [Figure 3](#figure-3) the blue pulse shows the sampling instant.
+
+
+If we increase the baud rate over 2400 (for instance, 4800) we noticed that the data was received wrongly, and [Figure 4](#figure-4) clearly shows the reason: with a faster baud rate the small errors our code commits measuring time becomes more significant, shifting the sampling instants to the "right", sampling the wrong value.
+
+### Project 6: Incompatible Baud Rates
+We tried setting different baud rates in the transmitter and in the receiver to observe how the transmission behaves.
+Firstly, we set the TX to a higher baud rate than the RX (4800 TX and 1200 RX), as shown in [Figure 5](#figure-5).
+We can see that the sampling rate is too slow, and wrong values are read.
+We then tried to set the TX to a lower baud rate than the RX (100 TX and 150 RX), as shown in [Figure 6](#figure-6).
+We can see (even if the blue pulses are hard to see due to their duration being way smaller than the baud rates) that the bits are sampled too fast: some values are sampled twice.
+
+We tried then setting different number of transmitted bits on the TX and RX.
+Firstly we set the TX number of bits to 7, leaving the RX set to 8 bits. The 7 bit value transmitted was `1100001`, but a wrong `11100001` is received, because the stop bits are read as transmitted ones, as shown in [Figure 7](#figure-7).
+We then tried to set the TX number of bits to 8 (as in previous exercises), leaving the RX set to 7 bits. The 8 bit transmitted value was `01100001`. We forgot to take a screenshot of the oscilloscope, so we don't have any evidence of the result, but the expected received value is `1100001`.
+
+
+### Project 8: Parity check
+To check the parity of the transmission, we used the variable `parity` initialized to `0`. The idea is to toggle its value (of the first bit, others are not used) for each `1` received. This way, if its value at the end will be still `0` it means that the number of received ones is even (the variable has been toggled `2n` times).
+
+We tried setting on both transmitter and receiver the same parity, and it all worked well. We then tried setting different parities, and the system failed with the message: 
+
+> ERROR: even parity is wrong! Exiting...
+
+
+## Figures
+
+### Figure 1
+![](report/Lab2_project2.jpg)
+
+### Figure 2
+![](report/Lab2_project3.png)
+
+### Figure 3
 ![](report/Lab2_project5_still_correct.jpg)
-If we increase the baud rate over 2400 (for instance, 4800) we noticed that the data was received wrongly, and the oscilloscope clearly shows the reason: with a faster baud rate the small errors our code commits measuring time becomes more significant, shifting the sampling instants to the "right", sampling the wrong value.
+
+### Figure 4
 ![](report/Lab2_project5_wrong.jpg)
+
+### Figure 5
+![](report/Lab2_project6_4800_1200.jpg)
+
+### Figure 6
+![](report/Lab2_project6_110_150.jpg)
+
+### Figure 7
+![](report/Lab2_project6_7_8.jpg)
+
+### Figure 8
+![](report/Lab2_project6_8_9.jpg)

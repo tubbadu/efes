@@ -1,0 +1,17 @@
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate E:\intelFPGA_lite\projects_DE1-SoC\sar_lab4\adc_controller\adc_controller.qsys --synthesis=VHDL --output-directory=E:\intelFPGA_lite\projects_DE1-SoC\sar_lab4\adc_controller\adc_controller\synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading adc_controller/adc_controller.qsys
+Progress: Reading input file
+Progress: Adding adc_mega_0 [altera_up_avalon_adc_mega 18.0]
+Progress: Parameterizing module adc_mega_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: adc_controller: Generating adc_controller "adc_controller" for QUARTUS_SYNTH
+Info: adc_mega_0: Starting Generation of ADC Controller for DE-series Board
+Info: adc_mega_0: E:/intelfpga_lite/18.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/Users/alcor/AppData/Local/Temp/alt8602_1436325797576866924.dir/0002_sopcgen/adc_controller_adc_mega_0.v
+Info: adc_mega_0: "adc_controller" instantiated altera_up_avalon_adc_mega "adc_mega_0"
+Info: adc_controller: Done "adc_controller" with 2 modules, 3 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
