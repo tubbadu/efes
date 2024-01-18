@@ -106,55 +106,90 @@ As we expected the output waveform matches the theoretical values, with only sma
 ### TODO add introduction!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #### Given parameters:  
-$
-V_L = 12 V \\
+$V_L = 12 V \\
 V_{dd} = 3.3 V \\
 f_{PWM} = 10 kHz \\
-I_{diode} = I_C = 20 mA
-$
+I_{diode} = I_C = 20 mA$
 
 From the datasheet of the 2N3700:  
-$
-\beta \in (100, 300) \\
+$\beta \in (100, 300) \\
 V_{CE} = 200 mV \\
-V_{BE} = 1.1 V
-$
+V_{BE} = 1.1 V$
 
 To get the diode working voltage we applied 12 V to the diode, using a very big resistor (1 $k\Omega$) in order to be sure not to damage it, and then with the bench DDM we measured it:  
 $V_{diode} = 1.96 V$
 
 #### Resistors choice procedure:
-#### TODO!!!!!! add explanation to why beta=100
-$
-V_{R_C} = V_L - V_{CE} - V_{diode} = (12 - 0.2 - 1.96) V = 9.84 V \\
+
+We did the calculations using $\beta=100$ (the lower bound) in order to be sure that the base current $I_B$ is enough to turn on the LED.
+
+$V_{R_C} = V_L - V_{CE} - V_{diode} = (12 - 0.2 - 1.96) V = 9.84 V \\
 R_C = \frac{V_{R_C}}{I_C} = \frac{9.84 V}{0.02 A} = 492 \Omega \Rightarrow 560 \Omega \\
 V_{R_B} = V_{dd} - V_{BE} = (3.3-1.1) V = 2.2 V \\
-R_B = \frac{V_{R_B}}{I_B} = \frac{V_{R_B} \cdot \beta}{I_C} = \frac{2.2V \cdot 100}{0.02 A} = 11 k \Omega \Rightarrow 12 k \Omega
-$
+R_B = \frac{V_{R_B}}{I_B} = \frac{V_{R_B} \cdot \beta}{I_C} = \frac{2.2V \cdot 100}{0.02 A} = 11 k \Omega \Rightarrow 10 k \Omega$
 
 #### Evaluation of power dissipation
-$
-P_{diode} = V_{diode} \cdot I_C = 0.0392 W \\
+$P_{diode} = V_{diode} \cdot I_C = 0.0392 W \\
 P_{R_C} = V_{R_C} \cdot I_C = 0.1968 W \\
-P_{BJT} = P_{BE} + P_{CE} = V_{BE} \cdot I_B + V_{CE} \cdot I_C = V_{BE} \cdot \frac{V_{R_B}}{R_B} + V_{CE} \cdot I_C = 0.0044 W \\
-P_{R_B} = \frac{V_{R_B}^2}{R_B} = 0.0002 W
-$
+P_{BJT} = P_{BE} + P_{CE} = V_{BE} \cdot I_B + V_{CE} \cdot I_C = V_{BE} \cdot \frac{V_{R_B}}{R_B} + V_{CE} \cdot I_C = 0.0042 W \\
+P_{R_B} = \frac{V_{R_B}^2}{R_B} = 0.0005 W$
 
 Since all resistors power consumption is less than 0.25 W, we can use standard 0.25W resistors. The power consumption of the BJT also is below the maximum values written in the datasheet ($P_{{BJT}_{MAX}} = 0.5 W$, $I_{C_{MAX}} = 0.6 A$)
 
-### TODO IMAGES
+#### Experiment results
+
+We applied different duty cycles to the base of the BJT: as expected, the LED turns on with different brightnesses, lineary dependant on the value of the DC applied.
 
 
 #### Measured values:
-$
-V_{CE_{cutoff}} = 10.4 V \\
+$V_{CE_{cutoff}} = 10.4 V \\
 V_{CE_{saturation}} = 14 mV \\
 V_H = 3.3 V \\
-V_L = 0.22 mV
-$
+V_L = 0.22 mV$
 
-# TODO explain
+The reason why our $V_{CE_{cutoff}}$ is smaller that the voltage supply (12 V) is due to the (small) leakage current flowing through the collector of the BJT, that causes a negligible voltage drop across the resistor $R_C$, but a non-negligible one across the LED, which is turned on by it.
 
-# TODO add all other exercise
+# TODO explain why saturation is different from datasheet!!!!!
 
-# TODO do lab 5
+## Project 3: Transistor delays
+
+With an oscilloscope we measured the falling and rising time of the PWM waveform at the input of the transistor, as shown in the pictures below. The results are:
+
+$t_{rising} = 9.2 ns \\
+t_{falling} = 8 ns$
+
+They are different because TODO
+
+![](report/ex%203%20-%20falling.jpg)
+![](report/ex%203%20-%20rising.jpg)
+
+We then measured the delay between the PWM output rising transition and the BJT output transition:
+
+$t_d = 8 \mu s$
+
+We then added a diode between base and collector to improve performances, and the new delay we measured is:
+
+$t_d = 1.56 \mu s$
+
+At the end we added a capacitor in parallel to $R_B$ and removed the diode, and we repeated the measurement:
+
+$t_d = 0.292 \mu s$
+
+# TODO explain lots of stuff here
+
+
+## Project 5: Different FPGA pin drive strengths
+
+GPIO0[1]:  
+$V_{CE_{sat}} = 14.199 mV \\
+V_H = 3.304 V$
+
+GPIO0[3]:  
+$V_{CE_{sat}} = 14.202 mV \\
+V_H = 3.302 V$
+
+GPIO0[5]:   
+$V_{CE_{sat}} = 14.22 mV \\
+V_H = 3.296 V$
+
+# TODO explain something invent I mean 
